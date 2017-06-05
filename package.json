@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "fs-extra": "^3.0.1",
     "phantomjs": "^2.1.7",
     "webpage": "^0.3.0"
   }
