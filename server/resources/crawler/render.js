@@ -1,17 +1,17 @@
 var webPage = require('webpage');
 var fs = require('fs');
+var system = require('system');
 
 var MAX_WAIT_TIME = 10000;
 var hasRender = false;
 var page = webPage.create();
-var url = 'https://mei-stylist.idv.tw';
+var url = system.args[1];
 var outputPath = fs.workingDirectory+'/render.json';
 
 var render = function() {
   page.render('capture.jpg', {format: 'jpg', quality: '100'});
   fs.write(outputPath, JSON.stringify({
     status: 200,
-    created_at: new Date(),
     content: page.content,
   }), 'w')
   phantom.exit();
@@ -19,7 +19,7 @@ var render = function() {
 
 var error = function() {
   fs.write(outputPath, JSON.stringify({
-    status: 400,
+    status: 404,
   }), 'w')
   phantom.exit();
 }
