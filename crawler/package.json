@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "phantomjs": "^2.1.7",
+    "webpage": "^0.3.0"
+  }
+}
