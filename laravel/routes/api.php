@@ -15,7 +15,5 @@ Route::get('/', function () {
 });
 
 Route::group([ 'prefix' => 'seo' ], function() {
-	Route::get('/', function () {
-	    return 'seo';
-    });
+    Route::get('/', 'SEOController@render');
 });
