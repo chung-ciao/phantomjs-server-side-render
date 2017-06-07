@@ -11,7 +11,7 @@ class SEOController extends Controller
         $crawlerPath = resource_path('crawler/render.js');
         $crawlerFolder = resource_path('crawler');
 
-       	$shell_output = shell_exec("cd $crawlerFolder; phantomjs render.js;");
+       	$shell_output = shell_exec("cd $crawlerFolder; phantomjs render.js $url;");
        	$renderResult = file_get_contents(resource_path('crawler/render.json'));
         return json_encode($renderResult);
     }
