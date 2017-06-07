@@ -9,7 +9,7 @@ var url = system.args[1];
 var outputPath = fs.workingDirectory+'/render.json';
 
 var render = function() {
-  page.render('capture.jpg', {format: 'jpg', quality: '100'});
+  // page.render('capture.jpg', {format: 'jpg', quality: '100'});
   fs.write(outputPath, JSON.stringify({
     status: 200,
     content: page.content,
