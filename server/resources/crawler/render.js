@@ -2,6 +2,7 @@ var webPage = require('webpage');
 var fs = require('fs');
 var system = require('system');
 
+// 最大等待時間, 超過這個時間, 無論前端是否完成回應render完成, 直接執行phantomjs
 var MAX_WAIT_TIME = 10000;
 var hasRender = false;
 var page = webPage.create();
@@ -9,7 +10,6 @@ var url = system.args[1];
 var outputPath = fs.workingDirectory+'/render.json';
 
 var render = function() {
-  // page.render('capture.jpg', {format: 'jpg', quality: '100'});
   fs.write(outputPath, JSON.stringify({
     status: 200,
     content: page.content,
@@ -24,7 +24,6 @@ var error = function() {
   phantom.exit();
 }
 
-page.viewportSize = { width: 1920, height: 1080 };
 page.open(url, function (status) {
   // 超過時間限制直接reject
   setTimeout(function() {
