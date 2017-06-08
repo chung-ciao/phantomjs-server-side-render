@@ -1,5 +1,5 @@
 <?php
-$ssrHost = 'http://localhost:9000';
+$ssrHost = 'https://seo.ciao.idv.tw';
 
 $host = $_SERVER["REQUEST_SCHEME"].'://'.$_SERVER["SERVER_NAME"];
 $port = '';

@@ -35,6 +35,12 @@ class SEOController extends Controller
     $process = new Process("phantomjs $phantomConfig $crawler $url $outputPath");
     $process->run();
 
+    if (!$process->isSuccessful()) {
+      return json_encode([
+        'status' => 404
+      ]);
+    }
+
     // 讀取phantomjs爬出的內容回傳, 並寫回cache
    	$renderResult = json_decode(file_get_contents(resource_path('crawler/render.json')));
     $this->addCache($url, $renderResult);
