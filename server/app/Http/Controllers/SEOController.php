@@ -29,13 +29,14 @@ class SEOController extends Controller
     }
 
     // 執行phantomjs爬頁面
-    $crawlerPath = resource_path('crawler/render.js');
+    $crawler = resource_path('crawler/render.js');
+    $outputPath = resource_path('crawler/render.json');
     $phantomConfig = $this->phantomConfig;
-    $process = new Process("phantomjs $phantomConfig $crawlerPath $url");
+    $process = new Process("phantomjs $phantomConfig $crawler $url $outputPath");
     $process->run();
 
     // 讀取phantomjs爬出的內容回傳, 並寫回cache
-   	$renderResult = json_decode(file_get_contents(public_path('render.json')));
+   	$renderResult = json_decode(file_get_contents(resource_path('crawler/render.json')));
     $this->addCache($url, $renderResult);
     return json_encode($renderResult);
   }

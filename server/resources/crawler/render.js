@@ -3,11 +3,11 @@ var fs = require('fs');
 var system = require('system');
 
 // 最大等待時間, 超過這個時間, 無論前端是否完成回應render完成, 直接執行phantomjs
-var MAX_WAIT_TIME = 10000;
+var MAX_WAIT_TIME = 15000;
 var hasRender = false;
 var page = webPage.create();
 var url = system.args[1];
-var outputPath = fs.workingDirectory+'/render.json';
+var outputPath = system.args[2];
 
 var render = function() {
   fs.write(outputPath, JSON.stringify({
@@ -20,6 +20,7 @@ var render = function() {
 var error = function() {
   fs.write(outputPath, JSON.stringify({
     status: 404,
+    content: 'timeout',
   }), 'w')
   phantom.exit();
 }
