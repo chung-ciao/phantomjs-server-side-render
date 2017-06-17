@@ -24,3 +24,7 @@ phantomjs才爬的到內容
 就會通知server side的phantomjs網站已經資料齊全
 
 可以開始爬html
+
+## Server Side
+
+> sudo npm install -g phantomjs
