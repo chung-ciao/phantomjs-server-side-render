@@ -26,16 +26,15 @@ class SEOController extends Controller
 		$url = $request->url;
 
 		// 確認是否有cache
-		if($this->getCache($url) != false) {
-			return json_encode($this->getCache($url));
-		}
+		// if($this->getCache($url) != false) {
+		// 	return json_encode($this->getCache($url));
+		// }
 
 		// 執行phantomjs爬頁面
 		$crawler = resource_path('crawler/render.js');
 		$phantomConfig = $this->phantomConfig;
 		$process = new Process("phantomjs $phantomConfig $crawler $url $this->tempFile");
 		$process->run();
-		Log::info($process->getOutput());
 		
 		if (!$process->isSuccessful()) {
 			return json_encode([
@@ -45,16 +44,12 @@ class SEOController extends Controller
 
 		// 讀取phantomjs爬出的內容回傳, 並寫回cache
 	 	$renderResult = json_decode(file_get_contents($this->tempFile));
-		$this->addCache($url, $renderResult);
+		// $this->addCache($url, $renderResult);
 
-		// if($renderResult->status == 200) {
-		// 	echo $renderResult->content;
-		// }
-		// else {
-		// 	echo $process->getOutput()."<br><br>";
-		// 	echo '404';
-		// }
-		@unlink($this->tempFile);
+		Log::info($request);
+		Log::debug($renderResult->content);
+		
+		// @unlink($this->tempFile);
 		return json_encode($renderResult);
 	}
 
