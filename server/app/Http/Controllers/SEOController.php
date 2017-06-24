@@ -11,6 +11,7 @@ use Carbon\Carbon;
 class SEOController extends Controller
 {
 	protected $phantomConfig;
+	protected $debug = false;
 
 	public function __construct() {
 		$phantomConfig = "--load-images=false ";
@@ -26,9 +27,9 @@ class SEOController extends Controller
 		$url = $request->url;
 
 		// 確認是否有cache
-		// if($this->getCache($url) != false) {
-		// 	return json_encode($this->getCache($url));
-		// }
+		if($this->getCache($url) != false) {
+			return json_encode($this->getCache($url));
+		}
 
 		// 執行phantomjs爬頁面
 		$crawler = resource_path('crawler/render.js');
@@ -44,12 +45,14 @@ class SEOController extends Controller
 
 		// 讀取phantomjs爬出的內容回傳, 並寫回cache
 	 	$renderResult = json_decode(file_get_contents($this->tempFile));
-		// $this->addCache($url, $renderResult);
+		$this->addCache($url, $renderResult);
 
-		Log::info($request);
-		Log::debug($renderResult->content);
+		if($this->debug) {
+			Log::info($request);
+			Log::debug($renderResult->content);
+		}
 		
-		// @unlink($this->tempFile);
+		@unlink($this->tempFile);
 		return json_encode($renderResult);
 	}
 
