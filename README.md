@@ -25,6 +25,6 @@ phantomjs才爬的到內容
 
 可以開始爬html
 
-## Server Side
+## Document
 
-> sudo npm install -g phantomjs
+[Vue2 with PhantomJS Server Side Render](https://blog.ciao.idv.tw/article/149797423052267#introduction)
