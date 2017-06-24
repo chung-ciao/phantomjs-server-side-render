@@ -12,7 +12,7 @@ if($_SERVER["REQUEST_SCHEME"] == 'https' && $_SERVER["SERVER_PORT"] != 443){
   $port = ':'.$_SERVER["SERVER_PORT"];
 }
 
-$requestUrl = urlencode($host.$port.$_SERVER['REQUEST_URI']);
+$requestUrl = $host.$port.$_SERVER['REQUEST_URI'];
 $result = json_decode(file_get_contents($url = "{$ssrHost}/api/seo/?url=$requestUrl"), true);
 
 if($result == null || $result['status'] != 200){
