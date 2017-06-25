@@ -13,8 +13,8 @@ class SEOController extends Controller
 	protected $phantomConfig;
 	protected $debug = false;
 	protected $allowOrigin = [
-		'blog.ciao.idv.tw'
-		'mei-stylist.idv.tw'
+		'blog.ciao.idv.tw',
+		'mei-stylist.idv.tw',
 	];
 
 	public function __construct() {
