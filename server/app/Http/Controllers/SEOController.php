@@ -12,6 +12,10 @@ class SEOController extends Controller
 {
 	protected $phantomConfig;
 	protected $debug = false;
+	protected $allowOrigin = [
+		'blog.ciao.idv.tw'
+		'mei-stylist.idv.tw'
+	];
 
 	public function __construct() {
 		$phantomConfig = "--load-images=false ";
@@ -25,6 +29,21 @@ class SEOController extends Controller
 
 	public function render(Request $request) {
 		$url = $request->url;
+
+		// 檢查domain
+		$parsedUrl = parse_url($url);
+		if(!$parsedUrl || !isset($parsedUrl['host']) || !isset($parsedUrl['scheme']) || !preg_match('/^https?$/i', $parsedUrl['scheme'])) {
+			return response('', 404);
+		}
+
+		$hostPort = $parsedUrl['host'];
+	    if(isset($parsedUrl['port'])){
+	        $hostPort .= ":{$parsedUrl['port']}";
+	    }
+
+	    if(!$this->allowOrigin || !in_array($hostPort, $this->allowOrigin)) {
+	    	return response('', 404);
+	    }
 
 		// 確認是否有cache
 		if($this->getCache($url) != false) {
