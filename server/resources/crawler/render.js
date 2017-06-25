@@ -29,15 +29,20 @@ page.open(url, function (status) {
   // 超過時間限制直接reject
   setTimeout(function() {
     if(!hasRender) {
-      error() 
+      error();
     }
   }, MAX_WAIT_TIME);
 
   // 前端所有request完成, 開始render
-  page.onCallback = function() {
-    setTimeout(function() {
-      render();
-      hasRender = true;
-    }, 500);
+  page.onCallback = function(status) {
+    if(status == 'phantomDone') {
+      setTimeout(function() {
+        render();
+        hasRender = true;
+      }, 500);
+    }
+    else {
+      error();
+    } 
   }
 });
