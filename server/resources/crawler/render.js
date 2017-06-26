@@ -35,7 +35,7 @@ page.open(url, function (status) {
 
   // 前端所有request完成, 開始render
   page.onCallback = function(status) {
-    if(status == 'pageDone') {
+    if(status == 'page.done') {
       setTimeout(function() {
         render();
         hasRender = true;
