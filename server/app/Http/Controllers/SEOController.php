@@ -12,10 +12,7 @@ class SEOController extends Controller
 {
 	protected $phantomConfig;
 	protected $debug = false;
-	protected $allowOrigin = [
-		'blog.ciao.idv.tw',
-		'mei-stylist.idv.tw',
-	];
+	protected $allowOrigin;
 
 	public function __construct() {
 		$phantomConfig = "--load-images=false ";
@@ -25,6 +22,7 @@ class SEOController extends Controller
 		$phantomConfig .= "--local-to-remote-url-access=true";
 		$this->phantomConfig = $phantomConfig;
 		$this->tempFile = "/tmp/render-".timestamp_micro().".json";
+        $this->allowOrigin = array_filter(explode(',', env('AllowOrigin')));
 	}
 
 	public function render(Request $request) {
