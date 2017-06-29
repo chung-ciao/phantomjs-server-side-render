@@ -18,7 +18,7 @@
 
 另外也有vue mixin的版本
 
-### Server Side Deploy
+## Server Side Deploy
 
 Server佈署跟一般Laravel專案佈署一樣
 
@@ -31,4 +31,10 @@ sudo npm install -g phantomjs
 安裝好後要再修改PhantomJS權限
 ```bash
 sudo chown -h [username]:[username] phantomjs
+```
+
+最後在.env中設定允許的Domain
+
+```bash
+AllowOrigin='example.com,example.com.tw'
 ```
