@@ -10,6 +10,10 @@
 
 先將 **client folder** 內的 **.htaccess** 及 **seo.php** 放到與index.html同一層目錄
 
+### seo.php
+
+修改 **$ssrHost** 設定要佈署的Server Side Render主機Domain
+
 ### Javascript
 
 可使用**client/phantom.js**

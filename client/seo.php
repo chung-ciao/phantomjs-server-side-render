@@ -1,5 +1,5 @@
 <?php
-$ssrHost = 'https://seo.ciao.idv.tw';
+$ssrHost = 'https://your-server-side-render-host';
 
 $host = $_SERVER["REQUEST_SCHEME"].'://'.$_SERVER["SERVER_NAME"];
 $port = '';
