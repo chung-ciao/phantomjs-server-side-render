@@ -69,7 +69,7 @@ class SEOController extends Controller
 			Log::debug($renderResult->content);
 		}
 		Log::debug($request->user_agent);
-		Log::notice($request->url." -> ".$renderResult->status);
+		Log::warning($request->url." -> ".$renderResult->status);
 		
 		@unlink($this->tempFile);
 		return json_encode($renderResult);
