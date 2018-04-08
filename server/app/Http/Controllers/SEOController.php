@@ -49,7 +49,7 @@ class SEOController extends Controller
 		}
 
 		// 執行phantomjs爬頁面
-		$crawler = resource_path('crawler/render.js');
+		$crawler = resource_path('crawler/puppeteer.js');
 		$phantomConfig = $this->phantomConfig;
 		$process = new Process("phantomjs $phantomConfig $crawler $url $this->tempFile");
 		$process->run();
