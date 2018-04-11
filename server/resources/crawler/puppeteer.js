@@ -4,13 +4,14 @@ const argv = require('yargs').argv
 
 class SSR {
   constructor() {
-    this.init()
     this.hasRender = false
     this.url = argv.url
     this.outputPath = argv.output
 
     // 最大等待時間, 超過這個時間, 無論前端是否完成回應render完成, 直接判定為404
     this.MAX_WAIT_TIME = 7000
+
+    this.init()
   }
 
   async init() {
